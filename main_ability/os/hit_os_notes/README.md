@@ -9,13 +9,13 @@
 
 ## 1. 课程笔记
 
-[Lecture01 操作系统]()
+[Chpater01 操作系统]()
 
-[Lecture02 进程与线程]()
+[Chpater02 进程与线程]()
 
-[Lecture03 内存管理]()
+[Chpater03 内存管理]()
 
-[Lecture04 设备驱动与文件系统]()
+[Chpater04 设备驱动与文件系统]()
 
 ## 2. 实验题
 
