@@ -7,58 +7,27 @@
     <!-- - Python岗位
     - Go岗位
     - Rust岗位 -->
-
 ## 💼 开发工具
-### OS
-- ubuntu 18.04（华为云）
-- Centos 8 （Ucloud）
-- TencentOS Server（Tlinux2.4）（腾讯云）
-### 终端工具
-- Termius
-- Filezilla 文件传输
 
-### IDE
-- Visual Studio Code --------> 「[常用配置或快捷键手册]()」
-- Sublime Text3 --------> 「[常用配置或快捷键手册]()」
-### 编辑器
-- Vim --------> 「[使用手册]()」
-- Emacs --------> 「[使用手册]()」
-- Typora --------> 「[markdown语法手册]()」
-### 版本控制
-- Git --------> 「[基本命令手册]()」
-- SVN
-- Gerrit（公司Code Review使用）--------> 「[基本命令手册]()」
-
-### 博客工具
-- Gitub
-- Gitbook
-- Gitee 暂无迁移计划
-### 编译器
-- gcc / g++ --------> 「[基本使用手册]()」
-
-### 构建工具
-- Makefile --------> 「[基本语法手册]()」
-- CMakeList.txt --------> 「[基本语法手册]()」
-### 调试器
-- GDB --------> 「[基本使用手册]()」
-### 静态检查工具
-- cppcheck
-- Google cpplint
+|空白列|内容分类||
+|:--|:--|:--|
+|NA|OS|ubuntu 18.04（华为云）<br>Centos 8 （Ucloud）<br>TencentOS Server（Tlinux2.4）（腾讯云）||
+|NA|终端工具|Termius <br>Filezilla 文件传输<br>MobaXterm（只支持Windows）|
+|NA|IDE|Visual Studio Code --------> 「[常用配置或快捷键手册]()」 <br> Sublime Text3 --------> 「[常用配置或快捷键手册]()」|
+|NA|编辑器|Vim --------> 「[使用手册]()」<br>Emacs --------> 「[使用手册]()」<br>Typora /马克飞象 --------> 「[markdown语法手册]()」|
+|NA|版本控制|Git --------> 「[基本命令手册]()」<br>SVN --------> 「[基本手册]<br>Gerrit（公司Code Review使用）--------> 「[基本命令手册]()」|
+|NA|博客工具|Gitub <br>Gitbook <br>Gitee 暂无迁移计划|
+|NA|编译器|gcc / g++ --------> 「[基本使用手册]()」|
+|NA|工程管理|Makefile --------> 「[基本语法手册]()」<br>CMakeList.txt --------> 「[基本语法手册]()」<br> bazel --------> 「[基本语法手册]()」|
+|NA|调试器|GDB --------> 「[基本使用手册]()」|
+|NA|静态检查|cppcheck <br>Google cpplint|
 
 ##  💯 数学
 > 数学部分由于排版原因，直接使用GitBook来进行。-------> 后续统一做出更新，优先更新技术文章
-### 高等数学
 
-### 概率论与数理统计
-
-### 线性代数
-
-### 离散数学
-
-### 信息论
-
-## 编程语言
-
+|科目|高等数学|概率论与数理统计|线性代数|离散数学|信息论|
+|:--|:--|:--|:--|:--|:--|
+|内容|||
 ### ✳️ C语言
 - 书籍笔记
     - 「[《C Primer Plus》第6版 学习笔记]()」
