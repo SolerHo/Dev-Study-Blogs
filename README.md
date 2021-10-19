@@ -21,7 +21,7 @@
 |NA|工程管理|Makefile --------> 「[基本语法手册]()」<br>CMakeList.txt --------> 「[基本语法手册]()」<br> bazel --------> 「[基本语法手册]()」|
 |NA|调试器|GDB --------> 「[基本使用手册]()」|
 |NA|静态检查|cppcheck <br>Google cpplint|
-|NA|CI/CD|jenkins --------> 「[基本使用手册]()」<br>GitLab CI --------> 「[基本使用手册]()」|
+|NA|CI/CD|jenkins --------> 「[基本使用手册]()」<br>GitLab CI --------> 「[基本使用手册]()」<br>Github Action --------> 「[使用手册参考](https://docs.github.com/cn/actions/quickstart)」 |
 
 ##  💯 数学
 > 数学部分由于排版原因，直接使用GitBook来进行。-------> 后续统一做出更新，优先更新技术文章
