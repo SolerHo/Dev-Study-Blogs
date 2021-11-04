@@ -1,4 +1,4 @@
-<h1 align="center">📔 Dev-Study-Blogs 无至同学 拼大厂路 笔记</h1>
+<h1 align="center">📔 Dev-Study-Blogs 小何同学 学习笔记博客</h1>
 
 ## 🚩 求职准备
 
@@ -9,19 +9,21 @@
     - Rust岗位 -->
 ## 💼 开发工具
 
-|空白列|内容分类||
+|实际用途|分类|详细内容及对应笔记|
 |:--|:--|:--|
-|NA|OS|ubuntu 18.04（华为云）<br>Centos 8 （Ucloud）<br>TencentOS Server（Tlinux2.4）（腾讯云）||
-|NA|终端工具|Termius <br>Filezilla 文件传输<br>MobaXterm（只支持Windows）|
-|NA|IDE|Visual Studio Code --------> 「[常用配置或快捷键手册]()」 <br> Sublime Text3 --------> 「[常用配置或快捷键手册]()」|
-|NA|编辑器|Vim --------> 「[使用手册]()」<br>Emacs --------> 「[使用手册]()」<br>Typora /马克飞象 --------> 「[markdown语法手册]()」|
-|NA|版本控制|Git --------> 「[基本命令手册]()」<br>SVN --------> 「[基本手册]<br>Gerrit（公司Code Review使用）--------> 「[基本命令手册]()」|
-|NA|博客工具|Gitub <br>Gitbook <br>Gitee 暂无迁移计划|
-|NA|编译器|gcc / g++ --------> 「[基本使用手册]()」|
-|NA|工程管理|Makefile --------> 「[基本语法手册]()」<br>CMakeList.txt --------> 「[基本语法手册]()」<br> bazel --------> 「[基本语法手册]()」|
-|NA|调试器|GDB --------> 「[基本使用手册]()」|
-|NA|静态检查|cppcheck <br>Google cpplint|
-|NA|CI/CD|jenkins --------> 「[基本使用手册]()」<br>GitLab CI --------> 「[基本使用手册]()」<br>Github Action --------> 「[使用手册参考](https://docs.github.com/cn/actions/quickstart)」 |
+|基本环境|OS|ubuntu 18.04（华为云）<br>Centos 8 （Ucloud）<br>TencentOS Server（Tlinux2.4）（腾讯云）||
+|SSH、ftp等连接工具|终端工具|Termius <br>Filezilla 文件传输<br>MobaXterm（只支持Windows）|
+|开发工具|IDE|Visual Studio Code --------> 『[常用配置或快捷键手册]()』 <br> Sublime Text3 --------> 『[常用配置或快捷键手册]()』|
+|代码编译或文档排版|编辑器|Vim --------> 『[使用手册]()』<br>Emacs --------> 『[使用手册]()』<br>Typora /马克飞象 --------> 『[markdown语法手册]()』|
+|管理代码工具|版本控制|Git --------> 『[基本命令手册]()』<br>SVN --------> 『[基本手册]<br>Gerrit（公司Code Review使用）--------> 『[基本命令手册]()』|
+|存放代码或笔记|工具|Gitub <br>Gitbook <br>Gitee 暂无迁移计划|
+|编译代码使用|编译器|gcc / g++ --------> 『[基本使用手册]()』|
+|多文件代码管理|工程管理|Makefile --------> 『[基本语法手册]()』<br>CMakeList.txt --------> 『[基本语法手册]()』<br> bazel --------> 『[基本语法手册]()』|
+|debug使用|调试器|GDB --------> 『[基本使用手册]()」|
+|检查代码错误或代码风格|检查工具|cppcheck <br>Google cpplint|
+|性能分析或检测内存和线程的bug|Valgrind工具集|Memcheck ---> 『[学习笔记]()』<br>Cachegrin ---> 『[学习笔记]()』<br>Helgrind ---> 『[学习笔记]()』<br>DRD ---> 『[学习笔记]()』<br>Massif ---> 『[学习笔记]()』<br>DHAT ---> 『[学习笔记]()』|
+|Google 检测内存、地址、线程|Sanitizer|AddressSanitizer <br>MemorySanitizer <br>ThreadSanitizer|
+|集成和敏捷工具，便于快速迭代|CI/CD|jenkins --------> 『[基本使用手册]()』<br>GitLab CI --------> 『[基本使用手册]()』<br>Github Action --------> 『[使用手册参考](https://docs.github.com/cn/actions/quickstart) 』|
 
 ##  💯 数学
 > 数学部分由于排版原因，直接使用GitBook来进行。-------> 后续统一做出更新，优先更新技术文章
