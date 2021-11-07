@@ -82,7 +82,7 @@ CmakeLists.txt语法简单，由命令、注释（#号后为注释，与shell类
 指令不区分大小写，但参数或变量是区分大小写的。
 
 例如（例子为学习《C++ Primer Plus》中使用过）：
-```sh
+```cmake
 #camke最低版本要求
 cmake_minimum_required(VERSION 3.0.0)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0)
@@ -104,16 +104,16 @@ ADD_EXECUTABLE(stock20.out main.cc stock20.cc stock20.h)
 ## 3. 常用语法命令
 
 ### 3.1 设置版本号
-```sh
+```cmake
 cmake_minimum_required(VERSION 3.9) #设置最低的cmake版本要求
 ```
 ### 3.2 设置项目及其对应版本
-```sh
+```cmake
 project(leveldb VERSION 1.23.0 LANGUAGES C CXX) # 
 ```
 
 ### 3.3 指定编程语言标准
-```sh
+```cmake
 #设置C语言标准
 set(CMAKE_C_STANDARD 11)
 
@@ -122,7 +122,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 ```
 ### 3.4 设置编译类型
-```sh
+```cmake
 # 例子以Linux为平台
 add_executable(leveldbutil "db/leveldbutil.cc") #生成可执行文件 可指定为 xx.out 文件
 add_library(common STATIC util.cpp) #直接编译生成静态库，文件以 .a 结尾
@@ -130,17 +130,17 @@ add_library(common SHARED util.cpp) #生成动态库或共享库，文件以 .so
 ```
 ## 4. 指定编译包含的源文件
 ### 4.1 明确指定包含哪些文件
-```sh
+```cmake
 add_library(stock20.out main.cc stock20.cc stock20.h)
 ```
 ### 4.2 搜索所有的cpp文件
-```sh
+```cmake
 aux_source_directory(dir SRC_LIST) #搜索dir目录下所有的源代码文件并将列表存储到SRC_LIST变量中
 aux_source_directory(. SRC_LIST) #当前目录下的所有cpp文件
 add_library(demo ${SRC_LIST}) #通过调用列表变量遍历所有文件 ----> 注意使用 ${变量名}
 ```
 ### 4.3 设置包含的目录
-```sh
+```cmake
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
@@ -151,7 +151,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR}")
 ```
 
 ### 4.4 设置链接库搜索目录
-```sh
+```cmake
 link_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/libs
 )
@@ -160,7 +160,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L${CMAKE_CURRENT_SOURCE_DIR}/libs")
 ```
 
 ## 5. 设置target需要链接的库
-```sh
+```cmake
 target_link_libraries(demo ${target_lib}) #demo为目标库，target_lib为将目标库需要链接的库
 
 target_link_libraries(demo libface.a) # 指定链接静态库libface.a
@@ -175,7 +175,7 @@ target_link_libraries("${test_target_name}" leveldb gmock gtest benchmark)
 ```
 
 ## 6. 设置变量
-```sh
+```cmake
 #set直接设置变量的值
 set(SRC_LIST main.cpp test.cpp)
 add_executable(demo ${SRC_LIST})
@@ -193,7 +193,7 @@ list(APPEND CMAKE_REQUIRED_LIBRARIES kyotocabinet) #APPEND添加、REMOVE_ITEM�
 ## 7. 条件控制
 类似shell中语句
 ### 7.1 if...else if ... else ...endif
-```sh
+```cmake
 #逻辑判断和比较
 if (expression) #expression 不为空（0,N,NO,OFF,FALSE,NOTFOUND）时为真
 if (not exp) # 与上面相反
@@ -225,20 +225,20 @@ if (string STREQUAL string)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC") #判断字符串是否等于MSVC
 ```
 ### 7.2 while
-```sh
+```cmake
 while(condition)
     ...
 endwhile()
 ```
 
 ### 7.3 
-```sh
+```cmake
 foreach(loop_var RANGE start stop [step]) #start表示起点、stop为终止点、step为步长，类似python语法的for循环
     ...
 endforeach(loop_var)
 ```
 ## 8. 打印信息
-```sh
+```cmake
 message(${PROJECT_SOURCE_DIR})
 message("build with debug mode")
 message(WARNING "this is warnning message")
@@ -248,7 +248,7 @@ message(FATAL_ERROR "this build has many error") # FATAL_ERROR 会导致编译�
 ## 9. 常用变量
 
 ### 9.1 预定义变量
-```sh
+```cmake
 PROJECT_SOURCE_DIR #工程的根目录
 PROJECT_BINARY_DIR #运行 cmake 命令的目录，通常是 ${PROJECT_SOURCE_DIR}/build
 PROJECT_NAME # 返回通过 project 命令定义的项目名称
@@ -261,12 +261,12 @@ EXECUTABLE_OUTPUT_PATH #重新定义目标二进制可执行文件的存放位�
 LIBRARY_OUTPUT_PATH #重新定义目标链接库文件的存放位置
 ```
 ### 9.2 环境变量
-```sh
+```cmake
 $ENV{Name} #环境变量的读取
 set(ENV{Name} value) #设置环境变量
 ```
 ### 9.3 缓存变量
-```sh
+```cmake
 set(var "value" CACHE <Type> "" FORCE) 
 # var只能有一个，value为不固定
 # type：BOOL----> 有ON/OFF，两种取值；STRING ---> 字符串；PATH ---> 目录路径等。
@@ -277,7 +277,7 @@ set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "" FORCE)
 set(BENCHMARK_ENABLE_EXCEPTIONS OFF CACHE BOOL "" FORCE)
 ```
 ### 9.4 系统信息
-```sh
+```cmake
 CMAKE_MAJOR_VERSION #cmake 主版本号，比如 3.4.1 中的 3
 ­CMAKE_MINOR_VERSION #cmake 次版本号，比如 3.4.1 中的 4
 ­CMAKE_PATCH_VERSION #cmake 补丁等级，比如 3.4.1 中的 1
@@ -290,7 +290,7 @@ CMAKE_MAJOR_VERSION #cmake 主版本号，比如 3.4.1 中的 3
 ```
 
 ### 9.5 开关选项
-```sh
+```cmake
 BUILD_SHARED_LIBS # 这个开关用来控制默认的库编译方式，如果不进行设置，使用 add_library 又没有指定库类型的情况下，默认编译生成的库都是静态库。如果 set(BUILD_SHARED_LIBS ON) 后，默认生成的为动态库
 
 # leveldb中的例子
@@ -336,4 +336,4 @@ endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 最主要参考的三个博主文章（衷心感谢大佬通俗易懂的总结）
 - https://zhuanlan.zhihu.com/p/406559772
 - https://blog.csdn.net/afei__/article/details/81201039
-- https://www.zhihu.com/column/c_1369781372333240320
+- https://zhuanlan.zhihu.com/p/368701263
