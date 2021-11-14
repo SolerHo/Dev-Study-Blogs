@@ -4,7 +4,10 @@
 
 
 ## 内容说明
-参考书籍：《现代操作系统》 第 4 版
+《现代操作系统》 中文版 (美) Andrew S·Tanenbaum
+
+English Version 《Modern Operating Systems》 (美) Andrew S·Tanenbaum
+
 > ✅ --- 已完成 
 >
 > ⬜ --- 未完成或进行中 
