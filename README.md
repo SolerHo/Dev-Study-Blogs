@@ -9,6 +9,20 @@ repo的内容会逐一完善，有的笔记可能会后续进行更改，然后�
 
 在本repo中如果看到 `$xxxx$` 的内容，这是使用 markdown语法兼容Latex数学语法的方式。所以建议在使用本repo时建议安装 Google插件 -------> [MathJax 3 Plugin for Github](https://chrome.google.com/webstore/detail/mathjax-3-plugin-for-gith/peoghobgdhejhcmgoppjpjcidngdfkod) 可直接查看错乱的数学公式。
 
+## ⚠️MIT、CMU、Stanford、Berkeley课程说明
+## 内容说明
+所有关于`CMU、Stanford、MIT、Berkeley`等学校的课程，**均不进行Homework（Lab）的更新**，如果需要交流的请发邮件说明到 `launolife@gmail.com` 来申请一个`private repository`的权限内部学习交流，邮件收到后会及时给各位开通使用权限。
+
+邮件格式（直接复制模版）：
+
+```md
+Github用户名：
+Github个人主页link（防止搜索错误）
+来源（哪里看到）：
+申请原因（标注课程）：
+申请repo：tops-project
+```
+
 ## 🚩 求职准备
 
 - 岗位
