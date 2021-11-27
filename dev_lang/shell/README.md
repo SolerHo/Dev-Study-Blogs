@@ -218,7 +218,7 @@ hello_123       # 合法
 会影响用户接口和shell的行为。环境变量是一个全局变量。
 
 通过 export 命令将变量声明为环境变量即可。
-```sh
+```shell
 export 变量名=变量值
 # 方式 1 :直接export导入，命令行窗口重启后失效
 export LD_LIBRARY_PATH=/usr/local/cuda/lib
@@ -863,23 +863,101 @@ echo "My Name is $name, The programming language being used is $dev_lang, age is
 
 详细关于正则表达式内容阅读：https://www.runoob.com/regexp/regexp-tutorial.html
 
-## 14. 一些命令说明
+## 14. Linux / shell中一些命令说明
+更多关于Linux相关的命令，请移步目录 Linux 关注知识点笔记。
 
-### 14.1 set/ unset命令 -- 
+关于里面的参数选项则不做出过多解读，只增加目前使用到的，后续有使用过其他的，也会再次更新。
+### 14.1 set/ unset命令 -- 设置/取消赋值
+内容只介绍在实际生产中的情况，更多的细节请阅读：https://www.computerhope.com/unix/uset.htm
+
+- 在命令中直接输入 set，则显示系统中已经存在的一些shell变量。
+
+- 设置新变量值
+
+    ```sh
+    set var[n]=value
+
+    set -ex var
+    ```
+参数选项
+- `-e（errexit）`：如果命令的返回值不是0，则直接退出shll的执行。
+- `-x（）`：执行命令后，优先显示该命令及对应的参数。
 
 ### 14.2 read命令 -- 从控制台读取输入
+参考：https://www.computerhope.com/unix/bash/read.htm
 
-### 14.3 declare命令 -- 声明变量的类型
+从屏幕标准输入中读取一行。默认情况下，read将`换行符`作视为行的结尾。
 
+```sh
+read [-ers] [-a array] [-d delim] [-i text] [-n nchars] [-N nchars]
+     [-p prompt] [-t timeout] [-u fd] [name ...] [name2 ...]
+```
 
-### 14.4 let命令 -- 赋值
+在while循环中使用的 -r 则是直接使用原始的输入。例如
 
-### 14.5 alias命令 -- 设置别名
+```sh
+read -r name        # 读取控制台输入的name值
 
-### 14.6 expr命令 -- 表达式
+read -r age         # 读取控制前台输入的age值
+```
+### 14.3 declare命令 -- 声明shell变量
+参考链接：https://www.computerhope.com/unix/bash/declare.htm
 
-### 14.7 test命令 -- 判断
+几个功能
+- 声明shell变量和函数
+- 设置属性
+- 显示值
 
+语法：
+
+```sh
+declare [-a] [-A] [-f] [-F] [-g] [-i] [-l] [-n] [-r]
+        [-t] [-u] [-x] [-p] [name[=value]] [name[=value]] ...
+```
+
+具体使用的例子：
+```sh
+# 数组声明中使用，可加速数组的操作速度
+# shellcheck中也会无异常
+declare -a arr[]=(...)
+```
+### 14.4 let命令 -- 计算算术表达式
+直接参考：https://www.computerhope.com/unix/bash/let.htm
+
+功能：主要用于`计算算术表达式`。
+
+let是Linux内置命令。而 `((...))`是复合命令。
+
+```sh
+let arg [arg ...]       # 和 ((...)) 直接计算算术表达式的思想类似
+
+# 示例
+let "var = 5";echo $var     # 直接返回 5
+```
+
+### 14.5 expr命令 -- 表达式
+通用求值表达式：通过给定的操作（参数之间必须空格隔开）连接参数，并对参数求值。可使用算术、比较、字符串或逻辑操作。
+
+```sh
+expr 3 + 5      # 返回8
+expr 3 \* 5     # 乘法符号需要转义，返回15
+```
+
+字符串操作的请查看字符串部分。
+
+### 14.6 test命令 -- 判断检查
+直接参考：https://www.computerhope.com/unix/test.htm
+
+检查文件类型并比较值。
+
+```sh
+# 语法
+test expression
+
+# 应用 1：比较两个字符串（一般是判断字符串是否相等），比较运算符移步前面介绍部分 ---------> 比较运算符
+
+# 应用 2：数字大小比较
+```
 ## 15. Linux三剑客 --- grep
 
 ## 16. Linux三剑客 --- sed
@@ -919,5 +997,3 @@ shellcheck testop.sh
 - https://juejin.cn/post/6962032698697187364
 - https://myshell-note.readthedocs.io/en/latest/index.html
 - https://github.com/koalaman/shellcheck
-
-https://upload.wikimedia.org/wikipedia/commons/1/1a/NumPy_logo.svg
