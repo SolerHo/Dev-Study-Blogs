@@ -7,8 +7,9 @@
 - bash 版本：4.4.20
 - **本文不介绍和Linux 指令相关的内容**
 - **先修内容：`Linux基本命令`（推荐书籍：`《鸟哥Linux私房菜:基础学习》`）**
-- **只介绍本人在场景中使用后，结合参考书籍做的一个学习笔记**
+- **只介绍本人在场景中使用后，结合参考书籍做的一个学习笔记，未使用过的暂时不更新**
 - **部分图片来源书籍《高级Bash脚本编程指南》**
+- **所有笔记的内容均可通过 `cmd --help` 查看具体的用法**
 
 ## 01. shell概述
 在shell中，每个脚本的开头都使用 `#!` ，就是告知系统文件的执行都需要指定一个`解释器`。指定一个文件类型的特殊标记。占用 `2 字节` 。
@@ -959,10 +960,114 @@ test expression
 # 应用 2：数字大小比较
 ```
 ## 15. Linux三剑客 --- grep
+grep ---- global regular expression print，通过正则表达式来进行多用途文本搜索，属于一个过滤器。
+
+语法格式：
+```sh
+grep [OPTION]... PATTERN [FILE]...      # pattern 可以是要搜索的字符串，也可以正则表达式
+
+# 扩展命令 egrep 等价于 grep -E
+# 扩展命令 fgrep 等价于 grep -F
+```
+### 15.1 常用查找option说明
+|option|全称|说明|示例|
+|:--:|:--:|:--|:--|
+|`-i`|`--ignore-case`|在搜索时`忽略大小写`|![](./img/grep忽略大小写.png)|
+|`-w`|`--word-regexp`|强制匹配整个字符单词|![](./img/grep强制匹配完整字符.png)|
+
+### 15.2 输出控制option说明
+|option|全称|说明|示例|
+|:--:|:--:|:--|:--|
+|`-c`|`--count`|显示pattern匹配的次数|![](./img/grep输出控制计数.png)|
+|`-l`|`--files-with-matches`|显示文件中匹配字符的文件名|![](./img/grep显示存在字符的文件名.png)|
+|`-n`|`--line-number`|打印字符匹配所在的行|![](./img/grep打印pattern所在的行.png)|
+|`-o`|`--only-matching`|仅显示匹配的字符串（可以和 `-n` 结合使用）|![](./img/grep仅显示匹配的字符.png)|
+|`-v`|`--invert-match`|小写，显示不匹配字符的内容|![](./img/grep显示不匹配patten的字符内容.png)|
+|`-m`|`--max-count=NUM`|显示匹配字符的某一行的内容，适合绝对匹配|![](./img/)|
+
+### 15.3 其他两个常用RE进行的grep操作
+
+- 显示文件中以 "xxxx" 开头的内容，使用符号 `^`
+    
+    ```sh
+    cat xxxx.sh | grep "^xxxx"  # 以字符xxxx开头的内容行
+    ```
+    示例：
+
+    ![](./img/grep显示以pattern开头的内容.png)
+
+- 显示以 “xxxx” 结尾的文件名或者文件内容行，使用符号 `$`
+
+    ```sh
+    cat xxxx.sh | grep "xxxx$"        # 显示以 xxxx 内容结尾的内容行
+    ```
+    示例：
+    
+    ![](./img/grep显示以pattern结尾的内容行.png)
+
 
 ## 16. Linux三剑客 --- sed
+sed ----- stream editor，是文本处理工具。主要是查找并替换文本字符串等。
 
+语法：
+```sh
+sed [OPTION]... {script-only-if-no-other-script} [input-file]...
+```
+
+目前常用的格式为：
+
+```sh
+sed -i 's/查找的字符串（可包含RE）/替代内容/g' filename 
+
+# 如果在s/... /g 中包含单引号，则外面直接使用 双引号（""），⚠️注意中间使用一些特殊字符
+sed -i "s/查找的字符串（可包含RE）/替代内容/g" filename 
+```
+参数说明
+- `i` 一般是默认，可设置为其他option，具体 `sed --help` 查看。
+- `s` 查找
+- `///`分隔符，也可以是其他的字符。例如在Jenkins的pipeline语法中使用时（`sed -i "s#search_word#target_word#g" filename`）
+- `g` 表示直接全局替换 ----- global replacement。如果是需要忽略大小写时，可使用gi
+
+几个具体的使用场景：`vim命令行模式`中操作和`直接操作文本`是相同原理
+### 16.1 替换/修改字符串
+```sh
+# 全局替换（vim亦可）,且忽略大小写
+sed -i "s/Hello/This is/g" helloworld.sh    # 将文件helloworld.sh 中 Hello替换为 This is
+
+# 指定行替换（vim亦可），区分大小写
+sed "10,20 s/42m/46m/g" color_print.sh      # 将color_print.sh中10～20行之间的颜色42m替换成46m
+```
+
+### 16.2 换行、删除
+```sh
+sed -i "s/ /\n/g" helloworld.sh      # 将文件中空格全部换行（\n）
+
+sed "/\//d" helloworld.sh          # 将文件中的 /所在的行直接删除（也就是#!/bin/bash）
+```
+### 16.3 注释
+```sh
+# 全局删除
+sed "/^#\|^$\| *#/d" checkpip_deps.sh       # 将文件中注释直接全部删除
+```
+### 16.4 查看指定的行范围的内容
+```sh
+sed -n -e "5,7p"  [-e ...] font_color.sh # 查看指定范围内的内容，可使用多个 -e来指定多个行区间
+
+sed "5,7d" font_color.sh # 查看指定范围之外的内容，可重复使用
+```
 ## 17. Linux三剑客 --- awk
+awk ---- ，是报告可视化工具，文本格式化输出工具。主要处理文本文件。
+
+### 17.1 语法格式
+```sh
+awk [-F 分隔符] '{ACTION}' filenames
+awk [option] '{ACTION}' 
+```
+### 17.2 awk的原理
+从第1行到最后1行，逐行去扫描文件内容，然后找到匹配pattern的行，最后进行指定的ACTION。
+- 未指定pattern，则所有行都会被处理。
+- 未指定ACTION，则屏幕直接打印匹配到行的内容。
+
 
 ## 18. shell脚本静态检查 --- shellcheck
 详细内容直接阅读：https://github.com/koalaman/shellcheck，如下为使用方式：
@@ -989,7 +1094,6 @@ shellcheck testop.sh
 显示信息：
 
 ![](./img/shellcheck例子.png)
-
 
 ## 19. 参考资源
 - 《高级bash脚本编程指南》
