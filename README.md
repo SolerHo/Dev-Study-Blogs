@@ -10,23 +10,12 @@ repo的内容会逐一完善，有的笔记可能会后续进行更改，然后�
 在本repo中如果看到 `$xxxx$` 的内容，这是使用 markdown语法兼容Latex数学语法的方式。所以建议在使用本repo时建议安装 Google插件 -------> [MathJax 3 Plugin for Github](https://chrome.google.com/webstore/detail/mathjax-3-plugin-for-gith/peoghobgdhejhcmgoppjpjcidngdfkod) 可直接查看错乱的数学公式。
 
 ## ⚠️MIT、CMU、Stanford、Berkeley课程说明
-## 内容说明
-所有关于`CMU、Stanford、MIT、Berkeley`等学校的课程，**均不进行Homework（Lab）的更新**，如果需要交流的请发邮件说明到 `launolife@gmail.com` 来申请一个`private repository`的权限内部学习交流，邮件收到后会及时给各位开通使用权限。
-
-邮件格式（直接复制模版）：
-
-```md
-Github用户名：
-Github个人主页link（防止搜索错误）
-来源（哪里看到）：
-申请原因（标注课程）：
-申请repo：tops-project
-```
+所有关于`CMU、Stanford、MIT、Berkeley`等学校的课程，**均不进行Homework（Lab）的更新**。
 
 ## 🚩 求职准备
 
 - 岗位
-    - C/C++岗位
+    - C/C++
     <!-- - Python岗位
     - Go岗位
     - Rust岗位 -->
@@ -116,21 +105,21 @@ Github个人主页link（防止搜索错误）
 
 
 ### 系统编程
-- 进程控制
+<!-- - 进程控制
 - 进程间通信
 - Linux信号处理
 - 进程间关系
 - 守护进程
 - 线程控制
-- 线程间同步
+- 线程间同步 -->
 ### 网络编程
-- 网络编程（TCP/IP、UDP）
+<!-- - 网络编程（TCP/IP、UDP）
 - Socket套接字
 - 异步I/O
 - Unix domain协议和编程
 - IO多路复用
 - 序列化技术
-- 零拷贝技术
+- 零拷贝技术 -->
 
 ## 数据库（database）
 ### SQL基础
@@ -138,8 +127,8 @@ Github个人主页link（防止搜索错误）
 ### SQL强化
 
 ### 关系型
-- MySQL基础
-- MySQL调优
+<!-- - MySQL基础
+- MySQL调优 -->
 ### NosQL
 - postgreSQL
 
@@ -149,13 +138,13 @@ Github个人主页link（防止搜索错误）
 
 ### Restful API
 ### 项目实战
-- 聊天小工具
+<!-- - 聊天小工具 -->
 
 ## 开源项目
 
 ### 消息队列
-- RabbitMQ
-- Kafka
+- ZeroMQ
+<!-- - Kafka -->
 ### RPC框架
 - gRPC 
     - 参考文章「[腾讯技术工程 gRPC基础概念详解](https://zhuanlan.zhihu.com/p/389328756)」
@@ -171,23 +160,23 @@ Github个人主页link（防止搜索错误）
 
 ## 三高技术
 ### 高并发
-- 多线程
+<!-- - 多线程
 - 多进程
 - 协程
 - 异步回调
-- 容量评估
+- 容量评估 -->
 ### 高性能
-- CDN内容分发技术
+<!-- - CDN内容分发技术
 - 池化技术：数据库连接池，线程池
 - 集群化
-- 缓存技术
+- 缓存技术 -->
 
 ### 高可用
-- 负载均衡
+<!-- - 负载均衡
 - 软硬件负载均衡
 - 限流隔离降级技术
 - 应用容灾、资源隔离熔断
-- 异步多活
+- 异步多活 -->
 
 ## 调优问题
 ### Linux调优
@@ -218,7 +207,7 @@ Github个人主页link（防止搜索错误）
 
 
 ## 资格考试
-- 系统设计架构师
+<!-- - 系统设计架构师 -->
 
 
 ## 参考经验
