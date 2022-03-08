@@ -9,14 +9,16 @@
 - 树莓派 ARM64
 
 ### Aarch64 架构
+建议使用ARM架构的机器或者设备来进行。
 
+```sh
+docker build --tag 自己取名字:tag --file dockerfile文件 .
+```
 
 ### X86_64 架构
 
+```sh
+docker build --tag 自己取名字:tag --file dockerfile文件 .
+```
 
-
-
-
-
-
-
+更多内容后续会完善更新。
