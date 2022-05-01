@@ -1,4 +1,4 @@
-<h1 align="center">CMU15-411 编译原理 学习笔记博客</h1>
+<h1 align="center">CMU15-745 Spring19 编译原理 学习笔记博客</h1>
 
 ## 内容说明
 所有关于`CMU、Stanford、MIT、Berkeley`等学校的课程，**均不进行Homework（Lab）的更新**。
@@ -12,7 +12,7 @@
 - 编程语言（C/C++）
 
 ## 参考资源
-- 课程：CMU 15-411及其课程官网的resource介绍
+- 课程：[CMU 15-745](https://www.cs.cmu.edu/afs/cs/academic/class/15745-s19/www/index.html) 及其课程官网的resource介绍
 - 书籍：
     - 《编译原理》
     - 《编译器设计》
