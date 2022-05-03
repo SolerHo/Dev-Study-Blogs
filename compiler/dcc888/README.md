@@ -58,6 +58,8 @@
 
 另外课程中使用 llvm ，所以请自行学习视频课：https://www.youtube.com/playlist?list=PLDSTpI7ZVmVnvqtebWnnI8YeB8bJoGOyv
 
+非常忠心感谢 西班牙Professor : [Fernando Magno Quintao Pereira](https://www.youtube.com/channel/UCg5bk7P64WdvdIpxQ0OxnwQ) 开源的编译器课程，让编译器的学习更加的方便和入门。
+
 ## 3. 参考资料
 - 参考视频课程和slides：https://homepages.dcc.ufmg.br/~fernando/classes/dcc888/ementa/
 - 书籍：《编译原理》龙书
