@@ -9,13 +9,12 @@
 ## 1. 笔记目录及其中知识点
 
 ### 1.1 First Part
-- [Introduction](lecture01.md)
-  
-- Control Flow Graph
-- DataFlow Analyses
+- [Introduction](./lecture01.md)
+- [Control Flow Graph](./lecture02.md)
+- [DataFlow Analysis](./lecture03.md)
 - Introduction to Lattice Theory
-- Partial Redundancy Elimination:
-- Constraint Based Analyses
+- Partial Redundancy Elimination
+- Constraint Based Analysis
 - Pointer Analysis
 - Loop Optimizations
 - Static Single Assignment Form
