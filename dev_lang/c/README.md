@@ -47,6 +47,7 @@
   - [8.7 栈帧的概念](#87-栈帧的概念)
   - [8.8 递归函数](#88-递归函数)
   - [8.9 递归的经典例子](#89-递归的经典例子)
+  - [8.10 带参数的main() 函数](#810-带参数的main-函数)
 - [9. 数组](#9-数组)
   - [9.1 声明数组](#91-声明数组)
   - [9.2 初始化数组](#92-初始化数组)
@@ -86,7 +87,17 @@
   - [10.9 const修饰指针的特性](#109-const修饰指针的特性)
   - [10.10 指针的指针](#1010-指针的指针)
 - [11. 字符串](#11-字符串)
-  - [11.1 指针与字符串](#111-指针与字符串)
+  - [11.1 字符串的操作函数](#111-字符串的操作函数)
+    - [11.1.1 字符串`比较` -- `strcmp()` 和 `strncmp()`](#1111-字符串比较----strcmp-和-strncmp)
+    - [11.1.2 字符串拷贝 `strcpy()` 和 `strncpy()`](#1112-字符串拷贝-strcpy-和-strncpy)
+    - [11.1.3 查找子串第一次出现的位置和统计子串出现的次数](#1113-查找子串第一次出现的位置和统计子串出现的次数)
+    - [11.1.4 字符串拼接：`strcat()` 和 `strncat()`](#1114-字符串拼接strcat-和-strncat)
+    - [11.1.5 字符串`格式化输入sscanf()`、`输出sprintf()`](#1115-字符串格式化输入sscanf输出sprintf)
+  - [11.1.8 字符串中查找字符](#1118-字符串中查找字符)
+    - [11.1.7 字符串分割：`strtok()`](#1117-字符串分割strtok)
+  - [11.1.8 字符串长度：`strlen()`](#1118-字符串长度strlen)
+    - [11.1.9 字符串逆置](#1119-字符串逆置)
+    - [11.1.10 判断回文字符串](#11110-判断回文字符串)
 - [12. 结构体、共用体和其它类型](#12-结构体共用体和其它类型)
 - [13. 声明](#13-声明)
 - [14. 文件操作](#14-文件操作)
@@ -849,6 +860,18 @@ double fact(int n) // 函数定义
 - 汉诺塔问题
 - 青蛙跳台阶问题
 
+### 8.10 带参数的main() 函数
+语法格式为：
+```c
+// 两种方式是等价的，而且指针数组的本质就是二级指针，所以 *argv[] == *argv
+int main(int argc, char *argv[]) { /* 函数体 */ }
+int main(int argc, char **argv) { /* 函数体 */}
+```
+参数说明：
+- `argc` ：给main函数传递的参数总个数
+- `*argv[]` ：一个`数组`，数组中的每一个元素都是`指针类型`的字符串` char *`。
+
+`可执行文件名`是数组参数的一个参数，也就是 `argv[0]`。
 ## 9. 数组
 数组由 `数据类型相同` 且 `大小固定` 的一组元素的顺序集合。
 
@@ -1319,6 +1342,8 @@ int max = (*gmax) (3,7);
 int *p[7]; // 表示数组中包含了7个指针类型的变量
 ```
 
+`指针数组`的本质就是`二级指针`。
+
 一般主要用在字符串处理过程中。
 
 #### 10.7.2 数组指针 --- 指向数组的指针
@@ -1419,17 +1444,282 @@ int **pp = &p; // 二级指针 ---- 一级指针的地址
 
 所以在C语言中，将字符串直接赋值给字符数组。
 
+字符串的定义形式有：
+
 ```c
-char ch[] = "solerho";
-char str[] = {"hello", "world"};
+char ch[] = {'h','e','l','l','o','\0'}; // 以 \0 作为字符串的结尾
+
+// 字符数组 ----- 字符串可以被修改内容
+char str00[] = "solerho"; // 默认自带 \0 作为结束符
+char str01[] = {"hello", "world"};
+
+// 字符指针 ----- 字符指针表示的数组不能被修改内容
+char *str02 = "hello"; // 字符串指针常量是不可以更改的，而且存储的值是字符串常量中的首个字符的地址
 ```
 ⚠️注意点：
 - 一般将一个字符串一次性赋值，而不是多次单个字符赋值。
 - 字符串数组一旦在定义完后，只能单个字符进行赋值。
 - 字符串是使用`空字符 \0` 来作为字符数组的`结尾`。`\0`表示字符串的`结束`。
+- `字符数组`存储的区域叫做`栈区`。`字符串常量`存储的区域叫做`常量区`。
+  - `栈区`的数据`可修改`，而`常量区`的数据`不可被修改`。
+- 字符数组（字符串）用作函数参数时，无需提供两个参数。
 
-### 11.1 指针与字符串
+由于字符串是一种特殊的数组，所以使用指针来处理字符串时，可以当作数组操作的方式来进行。
 
+```c
+int main()
+{
+  char ch[] = "hello";
+  char *p = ch;
+  printf("%s",p); // 直接字符串的首地址，可以读取整个字符串
+  return 0;
+}
+```
+所以一般字符指针（首地址）来代表整个字符串。
+
+### 11.1 字符串的操作函数
+字符串操作函数的头文件：`#include <stdio.h>`。
+#### 11.1.1 字符串`比较` -- `strcmp()` 和 `strncmp()`
+比较两个字符串，如果`相同返回0`，`不同`则一次比较ASCII码对应的值，如果`str1 > str2` ，返回`1`，否则`返回-1`。
+
+两个函数原型表示：
+
+```c
+// strcmp() 函数原型
+int strcmp(const char *str01, const char *str02);
+
+// strncmp() 函数原型
+int strncmp(const char *str01, const char *str02, size_t n);
+```
+
+对于 `strncmp()`函数只比较`前n个`字符。
+
+- `strcmp()` 函数实现
+
+  ```c
+  // 数组方式实现
+  int arr_strcmp(char *str01, char *str02)
+  {
+      int i = 0;
+      while (str01[i] == str02[i])
+      {
+          if (str01[i] == '\0')
+          {
+              return 0;
+          }
+          i++;
+      }
+      return str01[i] > str02[i] ? 1 : -1;
+  }
+
+  // 指针方式实现
+  int ptr_strcmp(char *str01, char *str02)
+  {
+      while (*str01 == *str02)
+      {
+          if (*str01 == '\0')
+          {
+              return 0;
+          }
+          str01++;
+          str02++;
+      }
+      return *str01 > *str02 ? 1 : -1;
+  }
+  ```
+
+#### 11.1.2 字符串拷贝 `strcpy()` 和 `strncpy()`
+两种拷贝方式，但是存在细微的差异：
+- `strcpy()`：拷贝空间不足时，会造成缓冲区溢出，而且安全性不足。
+  ```c
+  // 函数原型
+  char *strcpy(char *dest, const char *src); // 将src指向的字符串拷贝到dest指向的字符串中，包括 \0。
+  ```
+- `strncpy()`：n是指需要拷贝字符串中字符的个数
+  ```c
+  char *strncpy(char *dest, const char *src, size_t n); // 将src中的前n个字符拷贝到dest中。不一定包含\0，具体看拷贝的n是否包含\0。
+  ```
+
+函数实现如下：
+- `strcpy()` 函数实现
+
+  ```c
+
+  // 数组方式实现
+  void arr_strcpy(char *src, char *dst)
+  {
+    // src : 源
+    // dst : 目标
+    int i = 0;
+    while (src[i] != '\0')
+    {
+      dst[i] = src[i];
+      i++;
+    }
+    dst[i] = '\0';
+  }
+  // 指针方式实现
+  void ptr_strcpy(char *src, char *dst)
+  {
+    // src : 源
+    // dst : 目标
+    while (*src != '\0')
+    {
+      *dst = *src;
+      src++;
+      dst++;
+    }
+    *dst = '\0';
+  }
+  ```
+
+#### 11.1.3 查找子串第一次出现的位置和统计子串出现的次数
+`strstr()` 函数：在str中查找`第一次出现substr`的`位置`，不包括`终止符\0`。
+
+函数原型为：
+
+```c
+char *strstr(const char *str, const char *substr)
+// 参数说明：
+// 参数1: 原字符串
+// 参数2: 需要查找的子字符串
+```
+
+如果需要统计子字符串出现的次数，则实现如下：
+
+```c
+int substr_times(char * str, char *substr)
+{
+  char *p = strstr(str, substr);
+  while (*p != NULL)
+  {
+    count++;
+    p += strlen(substr);
+    p = strstr(p,substr);
+  }
+  return 0;
+}
+int main() 
+{
+  char str[] = "Solerhohohohoho";
+  char substr = "ho";
+
+  int times = substr_times(str, substr);
+  return 0;
+}
+```
+
+#### 11.1.4 字符串拼接：`strcat()` 和 `strncat()`
+拼接在一个字符串的后面。
+- `strcat()`
+  ```c
+  char *strcpy(char *dest, const char *src);
+  ``` 
+
+- `strncat()`
+  ```c
+  char *strncpy(char *dest, const char *src, size_t n);
+  ```
+
+#### 11.1.5 字符串`格式化输入sscanf()`、`输出sprintf()`
+
+- 格式化`输入sscanf()`
+  - 从 const_buffer 中获取对应的输入的值。
+  ```c
+  // 函数原型
+  int sscanf(const char *const_buffer, const char *const_format, ...);
+
+  ```
+
+- 格式化`输出sprintf()`
+  - 将格式化输出的结果保存到str所指向的字符串中。
+  ```c
+  // 函数原型
+  int sprintf(char *str, const char *format, ...);
+  // 示例
+  sprintf(str, "%d %c %d = %d",7,'+', 17,7 + 17);
+  puts(str); // 会默认添加换行符
+  ```
+
+### 11.1.8 字符串中查找字符
+在字符串中，找出字符出现出现的位置，返回字符在字符串中的地址。
+
+两种方式来查找字符串中的字符：
+- `strchr()`
+  - 默认是自左向右查找。
+- `strrchr()`
+  - 自右向左查找，但是显示的字符是第一个字符后的字符串。
+
+#### 11.1.7 字符串分割：`strtok()`
+函数原型：
+```c
+char *strtok(char *str, const char *delim);
+// 参数说明
+// str 参数：指向要分割的字符串。参数不能是const，因为不可写、不可读，就不能对其进行操作
+// delim 参数：包含分割符的C字符串
+// 返回值 ： 返回下一个分割后的字符串指针，如果无法分割则直接返回NULL。
+```
+
+`strtok()` 只要`str字符串`中发现`分割字符`时，会将其改为 `\0` 字符。
+
+### 11.1.8 字符串长度：`strlen()`
+函数原型：
+```c
+size_t strlen(const char *str)
+// str 参数：需要计算长度的字符串。不包含空结束符
+```
+
+函数实现的方式：
+```c
+size_t strlen(const char *str)
+{
+    char *p = str;
+    while (*p != '\0')
+    {
+      p++;
+    }
+    return p - str;
+}
+```
+
+#### 11.1.9 字符串逆置
+字符串的逆置，和数组中的元素逆置思想是类似的。
+
+```c
+void str_inverse(char *str)
+{
+    char *start = str; // 首元素地址
+    char *end   = str + strlen(str) - 1; // 最后一个元素地址
+    char temp;
+    while (start < end)
+    {
+        temp = *start;
+        *start = *end;
+        *end = temp;
+        start++; // 首元素地址后移
+        end--; // 尾元素地址前移
+    }
+}
+```
+
+#### 11.1.10 判断回文字符串
+**`回文（palindrome）`**：正反读都是一样的字符串。例如：abcba。
+
+```c
+int isPalindrome(char *str)
+{
+    char *start = str;
+    char *end   = str + strlen(str) - 1;
+    while (start < end)
+    {
+        if (*start != *end) // 如果是 *start == *end，则可以直接start++，end--
+        {
+            return 0; // 返回0表示非回文，返回1表示是回文
+        }
+    }
+    return 1;
+}
+```
 
 ## 12. 结构体、共用体和其它类型
   
